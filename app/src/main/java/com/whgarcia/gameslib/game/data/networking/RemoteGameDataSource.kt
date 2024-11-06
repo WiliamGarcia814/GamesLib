@@ -7,9 +7,12 @@ import com.whgarcia.gameslib.core.domain.util.NetworkError
 import com.whgarcia.gameslib.core.domain.util.Result
 import com.whgarcia.gameslib.core.domain.util.map
 import com.whgarcia.gameslib.game.data.mappers.toGame
+import com.whgarcia.gameslib.game.data.mappers.toGameDetail
+import com.whgarcia.gameslib.game.data.networking.dto.GameDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GamesResponseDto
 import com.whgarcia.gameslib.game.domain.Game
 import com.whgarcia.gameslib.game.domain.GameDataSource
+import com.whgarcia.gameslib.game.domain.GameDetail
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 
@@ -23,6 +26,19 @@ class RemoteGameDataSource(
             )
         }.map { response ->
             response.results.map { it.toGame() }
+        }
+    }
+
+    override suspend fun getGameById(gameId: Int): Result<GameDetail, NetworkError> {
+        return safeCall<GameDetailDto> {
+            httpClient.get(
+                urlString = constructUrl("/games/${gameId}${BuildConfig.API_KEY}")
+            )
+//            {
+//                parameter("page", 1)
+//            }
+        }.map { gameDetailDto ->
+            gameDetailDto.toGameDetail()
         }
     }
 }

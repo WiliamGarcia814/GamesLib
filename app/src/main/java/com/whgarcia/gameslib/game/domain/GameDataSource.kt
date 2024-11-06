@@ -5,4 +5,7 @@ import com.whgarcia.gameslib.core.domain.util.Result
 
 interface GameDataSource {
     suspend fun getGames(): Result<List<Game>, NetworkError>
+    suspend fun getGameById(
+        gameId: Int
+    ): Result<GameDetail, NetworkError>
 }

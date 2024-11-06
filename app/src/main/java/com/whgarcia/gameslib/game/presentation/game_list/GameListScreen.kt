@@ -21,9 +21,10 @@ import com.whgarcia.gameslib.ui.theme.GamesLibTheme
 @Composable
 fun GameListScreen(
     state: GameListState,
-    modifier: Modifier
+    onAction: (GameListAction) -> Unit,
+    modifier: Modifier = Modifier
 ){
-    if (state.isLoading){
+    if (state.isListLoading){
         Box(
             modifier = modifier
                 .fillMaxSize(),
@@ -40,7 +41,7 @@ fun GameListScreen(
             items(state.games) { gameUi ->
                 GameListItem(
                     gameUi = gameUi,
-                    onClick = {},
+                    onClick = { onAction(GameListAction.OnGameClick(gameUi)) },
                     modifier = Modifier.fillMaxWidth()
                 )
             }
@@ -58,6 +59,7 @@ private fun GameListScreenPreview(){
                     previewGame.copy(id = it)
                 }
             ),
+            onAction = {},
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
         )

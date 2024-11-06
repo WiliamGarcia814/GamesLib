@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.whgarcia.gameslib.game.domain.Game
@@ -33,12 +34,12 @@ fun GameListItem(
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = modifier
-            .clickable(onClick = onClick)
             .padding(16.dp)
             .shadow(40.dp)
+            .clickable(onClick = onClick)
     ) {
         Column {
-            GameCard(gameUi.background_image)
+            BackgroundImage(gameUi.background_image)
             Text(
                 text = gameUi.name,
                 fontWeight = FontWeight.ExtraBold,
@@ -50,31 +51,25 @@ fun GameListItem(
 }
 
 @Composable
-fun GameCard(image: String){
+fun BackgroundImage(image: String, height: Dp = 180.dp, padding: Dp = 16.dp){
+    val image = rememberAsyncImagePainter(model = image)
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = Modifier
-            .padding(16.dp)
+            .padding(padding)
             .shadow(40.dp)
     ) {
         Column {
-            BackgroundImage(image)
+            Image(
+                painter = image,
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(height)
+            )
         }
     }
-}
-
-@Composable
-fun BackgroundImage(image: String){
-    val image = rememberAsyncImagePainter(model = image)
-
-    Image(
-        painter = image,
-        contentDescription = null,
-        contentScale = ContentScale.Crop,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(180.dp)
-    )
 }
 
 internal val previewGame = Game(
