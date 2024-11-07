@@ -25,7 +25,12 @@ class GameListViewModel(
 
     private val _state = MutableStateFlow(GameListState())
     val state = _state
-        .onStart { loadMoreGames() }
+        .onStart {
+            _state.update { it.copy(
+                isListLoading = true
+            ) }
+            loadMoreGames()
+        }
         .stateIn(
             viewModelScope,
             SharingStarted.WhileSubscribed(5000L),
@@ -59,7 +64,7 @@ class GameListViewModel(
         },
         onSuccess = { games ->
             _state.update { currentState ->
-                currentState.copy(games = currentState.games + games)
+                currentState.copy(games = currentState.games + games, isListLoading = false)
             }
         }
     )
