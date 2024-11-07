@@ -45,7 +45,7 @@ fun AdaptiveGameListDetailPane(
         listPane = {
             AnimatedPane {
                 GameListScreen(
-                    state = state,
+                    viewModel = viewModel,
                     onAction = { action ->
                         viewModel.onAction(action)
                         when(action) {
@@ -54,6 +54,7 @@ fun AdaptiveGameListDetailPane(
                                     pane = ListDetailPaneScaffoldRole.Detail
                                 )
                             }
+                            is GameListAction.LoadNextPage -> {}
                         }
                     }
                 )

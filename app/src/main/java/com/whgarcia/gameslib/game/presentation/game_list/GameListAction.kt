@@ -4,4 +4,5 @@ import com.whgarcia.gameslib.game.presentation.models.GameUi
 
 sealed interface GameListAction {
     data class OnGameClick(val gameUi: GameUi): GameListAction
+    object LoadNextPage : GameListAction
 }

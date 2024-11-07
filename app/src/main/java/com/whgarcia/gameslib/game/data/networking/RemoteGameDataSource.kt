@@ -15,15 +15,19 @@ import com.whgarcia.gameslib.game.domain.GameDataSource
 import com.whgarcia.gameslib.game.domain.GameDetail
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
+import io.ktor.client.request.parameter
 
 class RemoteGameDataSource(
     private val httpClient: HttpClient
 ): GameDataSource{
-    override suspend fun getGames(): Result<List<Game>, NetworkError> {
+    override suspend fun getGames(page: Int, page_size: Int): Result<List<Game>, NetworkError> {
         return safeCall<GamesResponseDto> {
             httpClient.get(
                 urlString = constructUrl("/games${BuildConfig.API_KEY}")
-            )
+            ){
+                parameter("page", page)
+                parameter("page_size", page_size)
+            }
         }.map { response ->
             response.results.map { it.toGame() }
         }
@@ -34,9 +38,6 @@ class RemoteGameDataSource(
             httpClient.get(
                 urlString = constructUrl("/games/${gameId}${BuildConfig.API_KEY}")
             )
-//            {
-//                parameter("page", 1)
-//            }
         }.map { gameDetailDto ->
             gameDetailDto.toGameDetail()
         }
