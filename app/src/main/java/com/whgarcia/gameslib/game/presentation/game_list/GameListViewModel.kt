@@ -74,6 +74,9 @@ class GameListViewModel(
             is GameListAction.OnGameClick -> {
                 selectedGame(action.gameUi)
             }
+            is GameListAction.SearchGames -> {
+                searchGames(action.search)
+            }
             GameListAction.LoadNextPage -> loadMoreGames()
         }
     }
@@ -105,6 +108,31 @@ class GameListViewModel(
                 }
                 .onError { error ->
                     _state.update { it.copy(isDetailLoading = false) }
+                    _events.send(GameListEvent.Error(error))
+                }
+        }
+    }
+
+    private fun searchGames(search: String){
+        if (search.isEmpty()) return
+
+        _state.update { it.copy(
+            isSearchLoading = true
+        ) }
+
+        viewModelScope.launch {
+            gameDataSource
+                .getSearchGames(search.replace(" ", "-"))
+                .onSuccess { games ->
+                    _state.update {
+                        it.copy(
+                            searchGames = games.map { it.toGameUi() },
+                            isSearchLoading = false
+                        )
+                    }
+                }
+                .onError { error ->
+                    _state.update { it.copy(isSearchLoading = false) }
                     _events.send(GameListEvent.Error(error))
                 }
         }

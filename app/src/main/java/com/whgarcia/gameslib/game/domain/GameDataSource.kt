@@ -9,6 +9,10 @@ interface GameDataSource {
         page_size: Int
     ): Result<List<Game>, NetworkError>
 
+    suspend fun getSearchGames(
+        search: String
+    ): Result<List<Game>, NetworkError>
+
     suspend fun getGameById(
         gameId: Int
     ): Result<GameDetail, NetworkError>
