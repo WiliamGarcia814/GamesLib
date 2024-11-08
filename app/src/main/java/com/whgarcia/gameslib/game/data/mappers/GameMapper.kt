@@ -9,7 +9,7 @@ fun GameDto.toGame(): Game {
     return Game(
         id = id,
         name = name,
-        background_image = background_image
+        background_image = background_image ?: ""
     )
 }
 

@@ -6,5 +6,5 @@ import kotlinx.serialization.Serializable
 data class GameDto(
     val id: Int,
     val name: String,
-    val background_image: String
+    val background_image: String? = null
 )

@@ -33,6 +33,18 @@ class RemoteGameDataSource(
         }
     }
 
+    override suspend fun getSearchGames(search: String): Result<List<Game>, NetworkError> {
+        return safeCall<GamesResponseDto> {
+            httpClient.get(
+                urlString = constructUrl("/games${BuildConfig.API_KEY}")
+            ){
+                parameter("search", search)
+            }
+        }.map { response ->
+            response.results.map { it.toGame() }
+        }
+    }
+
     override suspend fun getGameById(gameId: Int): Result<GameDetail, NetworkError> {
         return safeCall<GameDetailDto> {
             httpClient.get(
