@@ -45,6 +45,7 @@ fun GameListScreen(
             )
 
             LazyColumn(
+                state = state.listState,
                 modifier = modifier
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.spacedBy(8.dp)

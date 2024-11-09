@@ -8,17 +8,17 @@ import com.whgarcia.gameslib.game.domain.GameDetail
 fun GameDto.toGame(): Game {
     return Game(
         id = id,
-        name = name,
+        name = name ?: "",
         background_image = background_image ?: ""
     )
 }
 
 fun GameDetailDto.toGameDetail(): GameDetail {
     return GameDetail(
-        name = name,
+        name = name ?: "",
         background_image = background_image ?: "",
-        description_raw = description_raw,
+        description_raw = description_raw ?: "",
         metacritic = metacritic ?: 0,
-        website = website
+        website = website ?: ""
     )
 }

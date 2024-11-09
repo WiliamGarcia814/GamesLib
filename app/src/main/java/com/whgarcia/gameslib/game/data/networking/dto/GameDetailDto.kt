@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class GameDetailDto(
-    val name: String,
+    val name: String? = null,
     val background_image: String? = null,
-    val description_raw: String,
+    val description_raw: String? = null,
     val metacritic: Int? = null,
-    val website: String
+    val website: String? = null
 )

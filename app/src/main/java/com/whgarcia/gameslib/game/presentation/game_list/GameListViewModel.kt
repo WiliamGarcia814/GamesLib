@@ -26,9 +26,6 @@ class GameListViewModel(
     private val _state = MutableStateFlow(GameListState())
     val state = _state
         .onStart {
-            _state.update { it.copy(
-                isListLoading = true
-            ) }
             loadMoreGames()
         }
         .stateIn(
@@ -116,23 +113,18 @@ class GameListViewModel(
     private fun searchGames(search: String){
         if (search.isEmpty()) return
 
-        _state.update { it.copy(
-            isSearchLoading = true
-        ) }
-
         viewModelScope.launch {
             gameDataSource
                 .getSearchGames(search.replace(" ", "-"))
                 .onSuccess { games ->
                     _state.update {
                         it.copy(
-                            searchGames = games.map { it.toGameUi() },
-                            isSearchLoading = false
+                            searchGames = games.map { game ->
+                                game.toGameUi() }
                         )
                     }
                 }
                 .onError { error ->
-                    _state.update { it.copy(isSearchLoading = false) }
                     _events.send(GameListEvent.Error(error))
                 }
         }
