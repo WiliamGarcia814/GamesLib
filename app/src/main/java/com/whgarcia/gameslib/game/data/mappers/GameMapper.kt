@@ -16,9 +16,9 @@ fun GameDto.toGame(): Game {
 fun GameDetailDto.toGameDetail(): GameDetail {
     return GameDetail(
         name = name,
-        background_image = background_image,
+        background_image = background_image ?: "",
         description_raw = description_raw,
-        metacritic = metacritic,
+        metacritic = metacritic ?: 0,
         website = website
     )
 }
