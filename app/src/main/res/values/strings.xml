@@ -6,4 +6,8 @@
     <string name="error_unknown">Something went wrong. Please try again later.</string>
     <string name="error_serialization">Couldn\'t serialize or deserialize data.</string>
     <string name="search_games">Buscar juego</string>
+    <string name="released_date">Fecha de lanzamiento</string>
+    <string name="genres">Género</string>
+    <string name="show_less">Ver menos</string>
+    <string name="show_more">Ver más</string>
 </resources>

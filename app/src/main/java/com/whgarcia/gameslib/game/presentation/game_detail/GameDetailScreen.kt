@@ -5,10 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CircularProgressIndicator
@@ -23,7 +21,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.whgarcia.gameslib.game.presentation.game_detail.components.GameMetrics
 import com.whgarcia.gameslib.game.presentation.game_list.GameListState
-import com.whgarcia.gameslib.game.presentation.game_list.components.BackgroundImage
 import com.whgarcia.gameslib.game.presentation.game_list.components.previewGame
 import com.whgarcia.gameslib.ui.theme.GamesLibTheme
 
@@ -49,11 +46,7 @@ fun GameDetailScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            BackgroundImage(
-                image = game?.background_image ?: "",
-                height = 200.dp,
-                padding = 0.dp
-            )
+            // Agregar componente de imagenes
             Spacer(modifier = Modifier.height(16.dp))
             GameMetrics(
                 name = game?.name ?: "",
