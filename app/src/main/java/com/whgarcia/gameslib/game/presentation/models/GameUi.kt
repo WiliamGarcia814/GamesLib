@@ -16,21 +16,22 @@ data class GameUi(
 
 
 fun Game.toGameUi(): GameUi{
-    val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-    val outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.getDefault())
-
-    val formattedDate = try {
-        LocalDate.parse(released, inputFormatter).format(outputFormatter)
-    }catch (e: Exception){
-        released
-    }
-
     return GameUi(
         id = id,
         name = name,
-        released = formattedDate,
+        released = formattedDate(released),
         background_image = background_image,
         parent_platforms = parent_platforms.map { it.platform.slug },
         genres = genres.map { it.name }
     )
+}
+
+fun formattedDate(date: String): String{
+    val inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    val outputFormatter = DateTimeFormatter.ofPattern("MMM dd, yyyy", Locale.getDefault())
+    return try {
+        LocalDate.parse(date, inputFormatter).format(outputFormatter)
+    }catch (e: Exception){
+        date
+    }
 }

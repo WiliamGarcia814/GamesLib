@@ -10,4 +10,20 @@
     <string name="genres">Género</string>
     <string name="show_less">Ver menos</string>
     <string name="show_more">Ver más</string>
+    <string name="no_rating">Aún no calificado</string>
+    <string name="exceptional">Excepcional</string>
+    <string name="recommended">Recomendado</string>
+    <string name="meh">meh</string>
+    <string name="skip">skip</string>
+    <string name="no_metascore">N/A</string>
+    <string name="about_the_game">Acerca de</string>
+    <string name="read_less">Leer menos</string>
+    <string name="read_more">Leer más</string>
+    <string name="platforms">Plataformas</string>
+    <string name="ratings">RATINGS</string>
+    <string name="developers">Desarrollador</string>
+    <string name="publishers">Editor</string>
+    <string name="website">Sitio Web</string>
+    <string name="open_website">Ir al sitio web</string>
+    <string name="tags">Etiquetas</string>
 </resources>

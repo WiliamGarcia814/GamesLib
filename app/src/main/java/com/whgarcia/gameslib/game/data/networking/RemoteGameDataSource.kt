@@ -20,6 +20,7 @@ import io.ktor.client.request.parameter
 class RemoteGameDataSource(
     private val httpClient: HttpClient
 ): GameDataSource{
+    // Implementaciones de las funciones de GameDataSource
     override suspend fun getGames(page: Int, page_size: Int): Result<List<Game>, NetworkError> {
         return safeCall<GamesResponseDto> {
             httpClient.get(

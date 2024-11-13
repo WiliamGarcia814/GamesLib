@@ -5,6 +5,7 @@ import com.whgarcia.gameslib.core.domain.util.Result
 import com.whgarcia.gameslib.core.domain.util.onError
 import com.whgarcia.gameslib.core.domain.util.onSuccess
 
+// Interfaz para un paginador
 class DefaultPaginator<Key, Item>(
     private val initialKey: Key,
     private val onLoadUpdated: (Boolean) -> Unit,
@@ -14,9 +15,11 @@ class DefaultPaginator<Key, Item>(
     private val onSuccess: (List<Item>) -> Unit
 ): Paginator<Key, Item>{
 
+    // Propiedades para el paginador
     private var currentKey = initialKey
     private var isMakingRequest = false
 
+    // Implementación de la función para cargar más juegos
     override suspend fun loadNextGames() {
         if(isMakingRequest) return
 

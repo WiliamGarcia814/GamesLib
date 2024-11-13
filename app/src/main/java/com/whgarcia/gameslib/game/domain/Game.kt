@@ -1,5 +1,6 @@
 package com.whgarcia.gameslib.game.domain
 
+// Clase de datos para representar un juego
 data class Game(
     val id: Int,
     val name: String,

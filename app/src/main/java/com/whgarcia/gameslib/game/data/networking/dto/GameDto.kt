@@ -8,23 +8,23 @@ data class GameDto(
     val name: String? = null,
     val released: String? = null,
     val background_image: String? = null,
-    val parent_platforms: List<ParentPlatform>,
-    val genres: List<Genre>
+    val parent_platforms: List<ParentPlatformDto>,
+    val genres: List<GenreDto>
 )
 
 @Serializable
-data class ParentPlatform(
-    val platform: Platform
+data class ParentPlatformDto(
+    val platform: PlatformDto
 )
 
 @Serializable
-data class Platform(
+data class PlatformDto(
     val id: Int,
     val slug: String
 )
 
 @Serializable
-data class Genre(
+data class GenreDto(
     val id: Int,
     val name: String
 )

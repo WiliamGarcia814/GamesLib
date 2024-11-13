@@ -10,9 +10,12 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
+// Configuración de Koin para la inyección de dependencias
 val appModule = module {
+    // Configuración de la dependencia HttpClient
     single { HttpClientFactory.create(CIO.create()) }
+    // Configuración de la dependencia GameDataSource
     singleOf(::RemoteGameDataSource).bind<GameDataSource>()
-
+    // Configuración del ViewModel GameListViewModel
     viewModelOf(::GameListViewModel)
 }
