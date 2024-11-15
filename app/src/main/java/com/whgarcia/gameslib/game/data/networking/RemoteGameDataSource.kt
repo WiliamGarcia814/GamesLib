@@ -8,11 +8,14 @@ import com.whgarcia.gameslib.core.domain.util.Result
 import com.whgarcia.gameslib.core.domain.util.map
 import com.whgarcia.gameslib.game.data.mappers.toGame
 import com.whgarcia.gameslib.game.data.mappers.toGameDetail
+import com.whgarcia.gameslib.game.data.mappers.toGameSearch
 import com.whgarcia.gameslib.game.data.networking.dto.GameDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GamesResponseDto
+import com.whgarcia.gameslib.game.data.networking.dto.GamesSearchResponseDto
 import com.whgarcia.gameslib.game.domain.Game
 import com.whgarcia.gameslib.game.domain.GameDataSource
 import com.whgarcia.gameslib.game.domain.GameDetail
+import com.whgarcia.gameslib.game.domain.GameSearch
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.client.request.parameter
@@ -34,15 +37,15 @@ class RemoteGameDataSource(
         }
     }
 
-    override suspend fun getSearchGames(search: String): Result<List<Game>, NetworkError> {
-        return safeCall<GamesResponseDto> {
+    override suspend fun getSearchGames(search: String): Result<List<GameSearch>, NetworkError> {
+        return safeCall<GamesSearchResponseDto> {
             httpClient.get(
                 urlString = constructUrl("/games${BuildConfig.API_KEY}")
             ){
                 parameter("search", search)
             }
         }.map { response ->
-            response.results.map { it.toGame() }
+            response.results.map { it.toGameSearch() }
         }
     }
 

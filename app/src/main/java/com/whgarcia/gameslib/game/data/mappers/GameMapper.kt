@@ -3,6 +3,7 @@ package com.whgarcia.gameslib.game.data.mappers
 import com.whgarcia.gameslib.game.data.networking.dto.DeveloperDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GameDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GameDto
+import com.whgarcia.gameslib.game.data.networking.dto.GameSearchDto
 import com.whgarcia.gameslib.game.data.networking.dto.GenreDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GenreDto
 import com.whgarcia.gameslib.game.data.networking.dto.ParentPlatformDto
@@ -15,6 +16,7 @@ import com.whgarcia.gameslib.game.data.networking.dto.TagDetailDto
 import com.whgarcia.gameslib.game.domain.DeveloperDetailDomain
 import com.whgarcia.gameslib.game.domain.Game
 import com.whgarcia.gameslib.game.domain.GameDetail
+import com.whgarcia.gameslib.game.domain.GameSearch
 import com.whgarcia.gameslib.game.domain.GenreDetailDomain
 import com.whgarcia.gameslib.game.domain.GenreDomain
 import com.whgarcia.gameslib.game.domain.ParentPlatformDomain
@@ -131,5 +133,13 @@ fun PublisherDetailDto.toPublisherDetailDomain(): PublisherDetailDomain{
     return PublisherDetailDomain(
         id = id,
         name = name
+    )
+}
+
+fun GameSearchDto.toGameSearch(): GameSearch{
+    return GameSearch(
+        id = id,
+        name = name ?: "",
+        background_image = background_image ?: ""
     )
 }

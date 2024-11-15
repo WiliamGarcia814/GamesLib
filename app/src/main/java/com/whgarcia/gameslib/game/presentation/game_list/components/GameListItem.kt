@@ -29,7 +29,7 @@ fun GameListItem(
     Card(
         shape = RoundedCornerShape(8.dp),
         modifier = modifier
-            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .padding(vertical = 8.dp)
             .shadow(40.dp)
             .clickable(onClick = onClick)
     ) {

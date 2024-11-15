@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -37,6 +38,7 @@ fun GameListScreen(
         Column(
             modifier = modifier
                 .fillMaxSize()
+                .padding(16.dp)
         ) {
             GamesSearchBar(
                 state = state,
@@ -57,7 +59,7 @@ fun GameListScreen(
                     }
                     GameListItem(
                         gameUi = gameUi,
-                        onClick = { onAction(GameListAction.OnGameClick(gameUi)) },
+                        onClick = { onAction(GameListAction.OnGameClick(gameUi.id)) },
                         modifier = Modifier.fillMaxWidth()
                     )
                 }
@@ -85,7 +87,8 @@ private fun GameListScreenPreview(){
             state = GameListState(
                 games = (1..3).map {
                     previewGame.copy(id = it)
-                }
+                },
+                isListLoading = false
             ),
             onAction = {},
             modifier = Modifier

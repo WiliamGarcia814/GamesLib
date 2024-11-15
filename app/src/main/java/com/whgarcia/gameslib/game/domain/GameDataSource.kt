@@ -13,7 +13,7 @@ interface GameDataSource {
     // Declaración de la función para obtener juegos por búsqueda
     suspend fun getSearchGames(
         search: String
-    ): Result<List<Game>, NetworkError>
+    ): Result<List<GameSearch>, NetworkError>
 
     // Declaración de la función para obtener detalles de un juego por su ID
     suspend fun getGameById(

@@ -9,6 +9,7 @@ import com.whgarcia.gameslib.game.data.pagination.DefaultPaginator
 import com.whgarcia.gameslib.game.domain.GameDataSource
 import com.whgarcia.gameslib.game.presentation.models.GameUi
 import com.whgarcia.gameslib.game.presentation.models.toGameDetailUi
+import com.whgarcia.gameslib.game.presentation.models.toGameSearchUi
 import com.whgarcia.gameslib.game.presentation.models.toGameUi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -69,7 +70,7 @@ class GameListViewModel(
     fun onAction(action: GameListAction){
         when(action){
             is GameListAction.OnGameClick -> {
-                selectedGame(action.gameUi)
+                selectedGame(action.id)
             }
             is GameListAction.SearchGames -> {
                 searchGames(action.search)
@@ -86,15 +87,14 @@ class GameListViewModel(
         }
     }
 
-    private fun selectedGame(gameUi: GameUi){
+    private fun selectedGame(id: Int){
         _state.update { it.copy(
-            selectedGame = gameUi,
             isDetailLoading = true
         ) }
 
         viewModelScope.launch {
             gameDataSource
-                .getGameById(gameUi.id)
+                .getGameById(id)
                 .onSuccess { game ->
                     _state.update {
                         it.copy(
@@ -120,7 +120,7 @@ class GameListViewModel(
                     _state.update {
                         it.copy(
                             searchGames = games.map { game ->
-                                game.toGameUi() }
+                                game.toGameSearchUi() }
                         )
                     }
                 }

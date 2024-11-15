@@ -42,7 +42,7 @@ fun GameDetailScreen(
         ){
             CircularProgressIndicator()
         }
-    }else if(state.selectedGame != null){
+    }else if(state.selectedGameDetail != null){
         val gameDetailUi = state.selectedGameDetail
         Column(
             modifier = modifier
@@ -51,10 +51,8 @@ fun GameDetailScreen(
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            if (gameDetailUi != null) {
-                GameMetrics(gameDetailUi)
-                GameInformation(gameDetailUi)
-            }
+            GameMetrics(gameDetailUi)
+            GameInformation(gameDetailUi)
         }
     }
 }
@@ -133,7 +131,6 @@ fun GameDetailScreenPreview(){
     GamesLibTheme {
         GameDetailScreen(
             state = GameListState(
-                selectedGame = previewGame,
                 selectedGameDetail = previewGameDetail,
             ),
             modifier = Modifier.background(
