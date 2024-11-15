@@ -16,14 +16,11 @@ import com.whgarcia.gameslib.ui.theme.GamesLibTheme
 
 @Composable
 fun GameCardImage(image: String){
-    val image = rememberAsyncImagePainter(model = image)
     Card(
         shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
-        modifier = Modifier
-            .padding(0.dp)
     ) {
         Image(
-            painter = image,
+            painter = rememberAsyncImagePainter(model = image),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier

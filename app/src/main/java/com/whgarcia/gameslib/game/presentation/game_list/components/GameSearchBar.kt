@@ -75,7 +75,6 @@ fun GamesSearchBar(
                     items(state.searchGames) { gameUi ->
                         DropdownMenuItem(
                             text = {
-                                val image = rememberAsyncImagePainter(model = gameUi.background_image)
                                 Row(
                                     verticalAlignment = Alignment.CenterVertically,
                                     modifier = Modifier
@@ -86,7 +85,7 @@ fun GamesSearchBar(
                                         shape = RoundedCornerShape(8.dp)
                                     ) {
                                         Image(
-                                            painter = image,
+                                            painter = rememberAsyncImagePainter(model = gameUi.background_image),
                                             contentDescription = null,
                                             contentScale = ContentScale.Crop,
                                             modifier = Modifier

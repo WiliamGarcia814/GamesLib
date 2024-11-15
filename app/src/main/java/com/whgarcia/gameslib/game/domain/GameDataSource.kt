@@ -19,4 +19,10 @@ interface GameDataSource {
     suspend fun getGameById(
         gameId: Int
     ): Result<GameDetail, NetworkError>
+
+    // Declaración de la función para obtener capturas de pantalla de un juego por su ID
+    suspend fun getGameScreenshots(
+        gameId: Int
+    ): Result<List<GameScreenshot>, NetworkError>
+
 }

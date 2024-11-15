@@ -3,6 +3,7 @@ package com.whgarcia.gameslib.game.presentation.game_list
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.runtime.Immutable
 import com.whgarcia.gameslib.game.presentation.models.GameDetailUi
+import com.whgarcia.gameslib.game.presentation.models.GameScreenshotUi
 import com.whgarcia.gameslib.game.presentation.models.GameSearchUi
 import com.whgarcia.gameslib.game.presentation.models.GameUi
 
@@ -12,6 +13,7 @@ data class GameListState(
     val searchGames: List<GameSearchUi> = emptyList(),
     val listState: LazyListState = LazyListState(),
     val selectedGameDetail: GameDetailUi? = null,
+    val selectedGameScreenshot: List<GameScreenshotUi> = emptyList(),
     val isListLoading: Boolean = true,
     val isDetailLoading: Boolean = false,
     val isLoading: Boolean = false,

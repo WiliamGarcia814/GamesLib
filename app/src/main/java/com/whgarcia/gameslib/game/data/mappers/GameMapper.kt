@@ -3,6 +3,7 @@ package com.whgarcia.gameslib.game.data.mappers
 import com.whgarcia.gameslib.game.data.networking.dto.DeveloperDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GameDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GameDto
+import com.whgarcia.gameslib.game.data.networking.dto.GameScreenshotDto
 import com.whgarcia.gameslib.game.data.networking.dto.GameSearchDto
 import com.whgarcia.gameslib.game.data.networking.dto.GenreDetailDto
 import com.whgarcia.gameslib.game.data.networking.dto.GenreDto
@@ -16,6 +17,7 @@ import com.whgarcia.gameslib.game.data.networking.dto.TagDetailDto
 import com.whgarcia.gameslib.game.domain.DeveloperDetailDomain
 import com.whgarcia.gameslib.game.domain.Game
 import com.whgarcia.gameslib.game.domain.GameDetail
+import com.whgarcia.gameslib.game.domain.GameScreenshot
 import com.whgarcia.gameslib.game.domain.GameSearch
 import com.whgarcia.gameslib.game.domain.GenreDetailDomain
 import com.whgarcia.gameslib.game.domain.GenreDomain
@@ -136,10 +138,20 @@ fun PublisherDetailDto.toPublisherDetailDomain(): PublisherDetailDomain{
     )
 }
 
+// Función de extensión para mapear GameSearchDto a GameSearch
 fun GameSearchDto.toGameSearch(): GameSearch{
     return GameSearch(
         id = id,
         name = name ?: "",
         background_image = background_image ?: ""
+    )
+}
+
+// Función de extensión para mapear GameScreenshotDto a GameScreenshot
+fun GameScreenshotDto.toGameScreenshot(): GameScreenshot {
+    return GameScreenshot(
+        id = id,
+        image = image,
+        is_deleted = is_deleted
     )
 }

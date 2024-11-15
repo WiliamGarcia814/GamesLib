@@ -47,7 +47,7 @@ fun GameInformation(
         modifier = Modifier
             .wrapContentSize()
             .fillMaxWidth()
-            .padding(vertical = 10.dp)
+            .padding(vertical = 10.dp, horizontal = 16.dp)
     ) {
         // Descripción del juego
         if(gameDetailUi.description_raw.isNotEmpty()){

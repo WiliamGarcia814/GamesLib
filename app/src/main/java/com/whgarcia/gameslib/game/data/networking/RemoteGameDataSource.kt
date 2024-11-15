@@ -8,13 +8,16 @@ import com.whgarcia.gameslib.core.domain.util.Result
 import com.whgarcia.gameslib.core.domain.util.map
 import com.whgarcia.gameslib.game.data.mappers.toGame
 import com.whgarcia.gameslib.game.data.mappers.toGameDetail
+import com.whgarcia.gameslib.game.data.mappers.toGameScreenshot
 import com.whgarcia.gameslib.game.data.mappers.toGameSearch
 import com.whgarcia.gameslib.game.data.networking.dto.GameDetailDto
+import com.whgarcia.gameslib.game.data.networking.dto.GameScreenshotResponseDto
 import com.whgarcia.gameslib.game.data.networking.dto.GamesResponseDto
 import com.whgarcia.gameslib.game.data.networking.dto.GamesSearchResponseDto
 import com.whgarcia.gameslib.game.domain.Game
 import com.whgarcia.gameslib.game.domain.GameDataSource
 import com.whgarcia.gameslib.game.domain.GameDetail
+import com.whgarcia.gameslib.game.domain.GameScreenshot
 import com.whgarcia.gameslib.game.domain.GameSearch
 import io.ktor.client.HttpClient
 import io.ktor.client.request.get
@@ -56,6 +59,16 @@ class RemoteGameDataSource(
             )
         }.map { gameDetailDto ->
             gameDetailDto.toGameDetail()
+        }
+    }
+
+    override suspend fun getGameScreenshots(gameId: Int): Result<List<GameScreenshot>, NetworkError> {
+        return safeCall<GameScreenshotResponseDto> {
+            httpClient.get(
+                urlString = constructUrl("/games/${gameId}/screenshots${BuildConfig.API_KEY}")
+            )
+        }.map { response ->
+            response.results.map { it.toGameScreenshot() }
         }
     }
 }

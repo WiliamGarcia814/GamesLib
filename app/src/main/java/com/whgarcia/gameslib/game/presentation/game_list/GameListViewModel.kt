@@ -9,6 +9,7 @@ import com.whgarcia.gameslib.game.data.pagination.DefaultPaginator
 import com.whgarcia.gameslib.game.domain.GameDataSource
 import com.whgarcia.gameslib.game.presentation.models.GameUi
 import com.whgarcia.gameslib.game.presentation.models.toGameDetailUi
+import com.whgarcia.gameslib.game.presentation.models.toGameScreenshotUi
 import com.whgarcia.gameslib.game.presentation.models.toGameSearchUi
 import com.whgarcia.gameslib.game.presentation.models.toGameUi
 import kotlinx.coroutines.channels.Channel
@@ -71,6 +72,7 @@ class GameListViewModel(
         when(action){
             is GameListAction.OnGameClick -> {
                 selectedGame(action.id)
+                loadGameScreenshots(action.id)
             }
             is GameListAction.SearchGames -> {
                 searchGames(action.search)
@@ -110,6 +112,31 @@ class GameListViewModel(
         }
     }
 
+    private fun loadGameScreenshots(id: Int){
+        _state.update { it.copy(
+            isDetailLoading = true
+        ) }
+
+        viewModelScope.launch {
+            gameDataSource
+                .getGameScreenshots(id)
+                .onSuccess { screenshots ->
+                    _state.update {
+                        it.copy(
+                            selectedGameScreenshot = screenshots.map { screenshot ->
+                                screenshot.toGameScreenshotUi()
+                            },
+                            isDetailLoading = false
+                        )
+                    }
+                }
+                .onError { error ->
+                    _state.update { it.copy(isDetailLoading = false) }
+                    _events.send(GameListEvent.Error(error))
+                }
+        }
+    }
+
     private fun searchGames(search: String){
         if (search.isEmpty()) return
 
@@ -120,7 +147,8 @@ class GameListViewModel(
                     _state.update {
                         it.copy(
                             searchGames = games.map { game ->
-                                game.toGameSearchUi() }
+                                game.toGameSearchUi()
+                            }
                         )
                     }
                 }
