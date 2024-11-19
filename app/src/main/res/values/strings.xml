@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">GamesLib</string>
+    <string name="error_request_timeout">The request timed out.</string>
+    <string name="error_too_many_requests">Oops, it seems like your quota is exceeded.</string>
+    <string name="error_no_internet">Couldn\'t connect to server, please check your internet connection.</string>
+    <string name="error_unknown">Something went wrong. Please try again later.</string>
+    <string name="error_serialization">Couldn\'t serialize or deserialize data.</string>
+    <string name="search_games">Buscar juego</string>
+    <string name="released_date">Fecha de lanzamiento</string>
+    <string name="genres">Género</string>
+    <string name="show_less">Ver menos</string>
+    <string name="show_more">Ver más</string>
+    <string name="no_rating">Aún no calificado</string>
+    <string name="exceptional">Excepcional</string>
+    <string name="recommended">Recomendado</string>
+    <string name="meh">meh</string>
+    <string name="skip">skip</string>
+    <string name="no_metascore">N/A</string>
+    <string name="about_the_game">Acerca de</string>
+    <string name="read_less">Leer menos</string>
+    <string name="read_more">Leer más</string>
+    <string name="platforms">Plataformas</string>
+    <string name="ratings">RATINGS</string>
+    <string name="developers">Desarrollador</string>
+    <string name="publishers">Editor</string>
+    <string name="website">Sitio Web</string>
+    <string name="open_website">Ir al sitio web</string>
+    <string name="tags">Etiquetas</string>
+    <string name="screenshots">Capturas de pantalla</string>
 </resources>
