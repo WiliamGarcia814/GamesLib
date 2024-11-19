@@ -93,10 +93,11 @@ fun GameMetrics(
             // Contenido superpuesto
             Text(
                 text = gameDetailUi.name,
-                fontSize = 36.sp,
-                fontWeight = FontWeight.ExtraBold,
+                style = MaterialTheme.typography.displaySmall.copy(
+                    fontWeight = FontWeight.Bold
+                ),
                 textAlign = TextAlign.Center,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onSurface,
                 lineHeight = 40.sp
             )
 
@@ -110,17 +111,17 @@ fun GameMetrics(
                 Column(horizontalAlignment = Alignment.Start) {
                     Text(
                         text = titleRating,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Medium,
+                        style = MaterialTheme.typography.titleLarge.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
                         textAlign = TextAlign.Start,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
                         text = "$totalRatings " + stringResource(R.string.ratings),
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Light,
+                        style = MaterialTheme.typography.labelLarge,
                         textAlign = TextAlign.Start,
-                        color = MaterialTheme.colorScheme.onBackground
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
                 ReviewCard(metascore = gameDetailUi.metacritic)
@@ -135,13 +136,14 @@ fun ReviewCard(metascore: Int){
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(
             contentColor = if(metascore in 70..100) Color.Green else if(metascore in 31..69) Color.Yellow else if(metascore in 0..30) Color.Red else MaterialTheme.colorScheme.onPrimary,
-            containerColor = MaterialTheme.colorScheme.onBackground
+            containerColor = MaterialTheme.colorScheme.onSurface
         )
     ) {
         Text(
             text = if(metascore == -1) stringResource(R.string.no_metascore) else metascore.toString(),
-            fontWeight = FontWeight.Medium,
-            fontSize = 20.sp,
+            style = MaterialTheme.typography.titleLarge.copy(
+                fontWeight = FontWeight.Bold
+            ),
             modifier = Modifier.padding(6.dp)
         )
     }

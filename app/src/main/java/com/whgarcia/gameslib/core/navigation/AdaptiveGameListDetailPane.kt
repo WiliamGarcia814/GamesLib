@@ -56,6 +56,7 @@ fun AdaptiveGameListDetailPane(
                             }
                             is GameListAction.SearchGames -> {}
                             is GameListAction.LoadNextPage -> {}
+                            is GameListAction.clear -> {}
                         }
                     }
                 )
@@ -63,7 +64,12 @@ fun AdaptiveGameListDetailPane(
         },
         detailPane = {
             AnimatedPane {
-                GameDetailScreen(state = state)
+                GameDetailScreen(
+                    state = state,
+                    onAction = { action ->
+                        viewModel.onAction(action)
+                    }
+                )
             }
         },
         modifier = modifier

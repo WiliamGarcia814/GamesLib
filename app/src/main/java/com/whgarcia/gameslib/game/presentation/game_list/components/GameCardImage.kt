@@ -1,9 +1,8 @@
 package com.whgarcia.gameslib.game.presentation.game_list.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
@@ -18,14 +17,14 @@ import com.whgarcia.gameslib.ui.theme.GamesLibTheme
 fun GameCardImage(image: String){
     Card(
         shape = RoundedCornerShape(topStart = 8.dp, topEnd = 8.dp),
+        modifier = Modifier.aspectRatio(16f / 9f)
     ) {
         Image(
             painter = rememberAsyncImagePainter(model = image),
             contentDescription = null,
             contentScale = ContentScale.Crop,
             modifier = Modifier
-                .fillMaxWidth()
-                .height(180.dp)
+                .fillMaxSize()
         )
     }
 }

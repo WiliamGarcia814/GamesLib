@@ -1,23 +1,22 @@
 package com.whgarcia.gameslib.game.presentation.game_detail.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -40,10 +39,11 @@ fun GameScreenshots(
     ) {
         Text(
             text = stringResource(R.string.screenshots),
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
+            style = MaterialTheme.typography.titleLarge.copy(
+                fontWeight = FontWeight.Bold
+            ),
             textAlign = TextAlign.Start,
-            color = MaterialTheme.colorScheme.onBackground,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(bottom = 10.dp)
         )
         LazyRow(
@@ -53,20 +53,19 @@ fun GameScreenshots(
             items(gameScreenshots.size){ screenShot ->
                 // Si la imagen está borrada, no se muestra
                 if(gameScreenshots[screenShot].is_deleted) return@items
+
                 Card(
                     shape = RoundedCornerShape(8.dp),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.onSurface
-                    )
+                    modifier = Modifier
+                        .width(250.dp) // Fija un ancho razonable para cada imagen
+                        .aspectRatio(16f / 9f) // Proporción específica para cada imagen
                 ) {
                     Image(
                         painter = rememberAsyncImagePainter(gameScreenshots[screenShot].image),
                         contentDescription = null,
+                        contentScale = ContentScale.Crop,
                         modifier = Modifier
-                            .height(200.dp)
-                            .width(300.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .background(MaterialTheme.colorScheme.surface)
+                            .fillMaxSize()
                     )
                 }
             }

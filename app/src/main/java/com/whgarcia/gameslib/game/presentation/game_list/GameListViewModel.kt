@@ -78,6 +78,7 @@ class GameListViewModel(
                 searchGames(action.search)
             }
             GameListAction.LoadNextPage -> loadMoreGames()
+            is GameListAction.clear -> clearGame()
         }
     }
 
@@ -156,5 +157,12 @@ class GameListViewModel(
                     _events.send(GameListEvent.Error(error))
                 }
         }
+    }
+
+    fun clearGame(){
+        _state.update { it.copy(
+            selectedGameDetail = null,
+            selectedGameScreenshot = emptyList()
+        ) }
     }
 }

@@ -18,6 +18,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,14 +42,13 @@ import com.whgarcia.gameslib.ui.theme.GamesLibTheme
 @Composable
 fun GamesSearchBar(
     state: GameListState,
-    onAction: (GameListAction) -> Unit,
-    modifier: Modifier
+    onAction: (GameListAction) -> Unit
 ){
     var searchText by remember { mutableStateOf("") }
     var isDropdownExpanded by remember { mutableStateOf(false) }
 
     Column(
-        modifier = modifier
+        modifier = Modifier
             .fillMaxWidth()
             .padding(bottom = 16.dp)
     ) {
@@ -60,8 +60,21 @@ fun GamesSearchBar(
                 onAction(GameListAction.SearchGames(searchText))
                 isDropdownExpanded = it.isNotEmpty()
             },
-            label = { Text(stringResource(R.string.search_games)) },
-            modifier = Modifier.fillMaxWidth()
+            placeholder = {
+                Text(
+                    text = stringResource(R.string.search_games),
+                    style = MaterialTheme.typography.titleMedium,
+                    color = MaterialTheme.colorScheme.outline
+                )
+            },
+            textStyle = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.fillMaxWidth(),
+            colors = OutlinedTextFieldDefaults.colors(
+                focusedBorderColor = MaterialTheme.colorScheme.primary,
+                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                focusedTrailingIconColor = MaterialTheme.colorScheme.primary,
+                unfocusedTrailingIconColor = MaterialTheme.colorScheme.outline
+            )
         )
 
         if(isDropdownExpanded && state.searchGames.isNotEmpty()){
@@ -98,6 +111,8 @@ fun GamesSearchBar(
                                     // Texto del nombre del juego
                                     Text(
                                         text = gameUi.name,
+                                        style = MaterialTheme.typography.bodyLarge,
+                                        color = MaterialTheme.colorScheme.onSurface
                                     )
                                 }
                             },
@@ -129,10 +144,7 @@ private fun GamesSearchBarPreview(){
                    )
                }
             ),
-            onAction = {},
-            modifier = Modifier.background(
-                MaterialTheme.colorScheme.background
-            )
+            onAction = {}
         )
     }
 }

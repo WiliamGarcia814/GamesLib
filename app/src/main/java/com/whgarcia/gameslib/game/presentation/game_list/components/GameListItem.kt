@@ -1,12 +1,10 @@
 package com.whgarcia.gameslib.game.presentation.game_list.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -23,12 +21,11 @@ import com.whgarcia.gameslib.ui.theme.GamesLibTheme
 @Composable
 fun GameListItem(
     gameUi: GameUi,
-    onClick: () -> Unit,
-    modifier: Modifier
+    onClick: () -> Unit
 ){
     Card(
         shape = RoundedCornerShape(8.dp),
-        modifier = modifier
+        modifier = Modifier
             .padding(vertical = 8.dp)
             .shadow(40.dp)
             .clickable(onClick = onClick)
@@ -84,9 +81,6 @@ fun GameListItemPreview(){
         GameListItem(
             gameUi = previewGame,
             onClick = {},
-            modifier = Modifier.background(
-                MaterialTheme.colorScheme.primaryContainer
-            )
         )
     }
 }

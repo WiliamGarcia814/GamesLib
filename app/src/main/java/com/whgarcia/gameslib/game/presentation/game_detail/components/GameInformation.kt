@@ -53,18 +53,18 @@ fun GameInformation(
         if(gameDetailUi.description_raw.isNotEmpty()){
             Text(
                 text = stringResource(R.string.about_the_game),
-                fontSize = 20.sp,
-                fontWeight = FontWeight.Bold,
+                style = MaterialTheme.typography.titleLarge.copy(
+                    fontWeight = FontWeight.Bold
+                ),
                 textAlign = TextAlign.Start,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.padding(bottom = 10.dp)
             )
             Text(
                 text = gameDetailUi.description_raw,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
+                style = MaterialTheme.typography.bodyMedium,
                 textAlign = TextAlign.Start,
-                color = MaterialTheme.colorScheme.onBackground,
+                color = MaterialTheme.colorScheme.onSurface,
                 maxLines = if (isExpandedDescription) Int.MAX_VALUE else 8,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier
@@ -74,16 +74,15 @@ fun GameInformation(
                 modifier = Modifier
                     .padding(top = 5.dp)
                     .clip(RoundedCornerShape(4.dp))
-                    .background(MaterialTheme.colorScheme.onBackground)
+                    .background(MaterialTheme.colorScheme.onSurface)
                     .padding(horizontal = 4.dp)
             ) {
                 Text(
                     text = if (isExpandedDescription) stringResource(R.string.read_less) else stringResource(
                         R.string.read_more
                     ),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Medium,
-                    color = MaterialTheme.colorScheme.background,
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.surface,
                     modifier = Modifier
                         .clickable { isExpandedDescription = !isExpandedDescription }
                 )
@@ -94,7 +93,7 @@ fun GameInformation(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 20.dp),
+                .padding(top = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
@@ -103,16 +102,17 @@ fun GameInformation(
             ) {
                 Text(
                     text = stringResource(R.string.platforms),
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 if(gameDetailUi.platforms.isNotEmpty()){
                     Text(
                         text = gameDetailUi.platforms.joinToString(", "),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -123,16 +123,17 @@ fun GameInformation(
             ) {
                 Text(
                     text = stringResource(R.string.genres),
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 if(gameDetailUi.genres.isNotEmpty()) {
                     Text(
                         text = gameDetailUi.genres.joinToString(", "),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -142,7 +143,7 @@ fun GameInformation(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 10.dp),
+                .padding(top = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
@@ -151,16 +152,17 @@ fun GameInformation(
             ) {
                 Text(
                     text = stringResource(R.string.released_date),
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 if (gameDetailUi.released.isNotEmpty()) {
                     Text(
                         text = gameDetailUi.released,
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -171,16 +173,17 @@ fun GameInformation(
             ) {
                 Text(
                     text = stringResource(R.string.developers),
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 if(gameDetailUi.developers.isNotEmpty()) {
                     Text(
                         text = gameDetailUi.developers.joinToString(", "),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -190,7 +193,7 @@ fun GameInformation(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 10.dp),
+                .padding(top = 16.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column(
@@ -199,16 +202,17 @@ fun GameInformation(
             ) {
                 Text(
                     text = stringResource(R.string.publishers),
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 if(gameDetailUi.publishers.isNotEmpty()) {
                     Text(
                         text = gameDetailUi.publishers.joinToString(", "),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }
@@ -219,9 +223,9 @@ fun GameInformation(
             ) {
                 Text(
                     text = stringResource(R.string.website),
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 if (gameDetailUi.website.isNotEmpty()) {
                     val context = LocalContext.current
@@ -230,7 +234,7 @@ fun GameInformation(
                         modifier = Modifier
                             .padding(top = 5.dp)
                             .clip(RoundedCornerShape(4.dp))
-                            .background(MaterialTheme.colorScheme.onBackground)
+                            .background(MaterialTheme.colorScheme.onSurface)
                             .padding(horizontal = 4.dp)
                             .clickable {
                                 context.startActivity(intent)
@@ -238,9 +242,10 @@ fun GameInformation(
                     ) {
                         Text(
                             text = stringResource(R.string.open_website),
-                            fontSize = 14.sp,
-                            fontWeight = FontWeight.Medium,
-                            color = MaterialTheme.colorScheme.background,
+                            style = MaterialTheme.typography.bodyMedium.copy(
+                                fontWeight = FontWeight.Bold
+                            ),
+                            color = MaterialTheme.colorScheme.surface
                         )
                     }
                 }
@@ -251,20 +256,22 @@ fun GameInformation(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(top = 16.dp)
         ) {
             Column {
                 Text(
                     text = stringResource(R.string.tags),
-                    fontSize = 14.sp,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Start,
-                    color = MaterialTheme.colorScheme.onBackground,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 if(gameDetailUi.tags.isNotEmpty()) {
                     Text(
                         text = gameDetailUi.tags.joinToString(", "),
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = MaterialTheme.colorScheme.onBackground,
+                        style = MaterialTheme.typography.bodyMedium.copy(
+                            fontWeight = FontWeight.Bold
+                        ),
+                        color = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }

@@ -5,4 +5,5 @@ sealed interface GameListAction {
     data class OnGameClick(val id: Int): GameListAction
     data class SearchGames(val search: String): GameListAction
     object LoadNextPage : GameListAction
+    object clear: GameListAction
 }

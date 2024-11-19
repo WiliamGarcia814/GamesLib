@@ -1,5 +1,6 @@
 package com.whgarcia.gameslib.game.presentation.game_list.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,9 +26,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.whgarcia.gameslib.R
 import com.whgarcia.gameslib.game.presentation.models.GameUi
 import com.whgarcia.gameslib.ui.theme.GamesLibTheme
@@ -54,6 +54,7 @@ fun GameCardInformation(gameUi: GameUi){
 
     Column(
         modifier = Modifier
+            .background(MaterialTheme.colorScheme.surfaceContainerLow)
             .fillMaxWidth()
             .padding(16.dp)
     ) {
@@ -72,8 +73,8 @@ fun GameCardInformation(gameUi: GameUi){
         }
         Text(
             text = gameUi.name,
-            fontSize = 24.sp,
-            fontWeight = FontWeight.ExtraBold,
+            style = MaterialTheme.typography.headlineLarge,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .padding(vertical = 4.dp)
         )
@@ -88,13 +89,15 @@ fun GameCardInformation(gameUi: GameUi){
             ) {
                 Text(
                     text = stringResource(R.string.released_date),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Light
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 Text(
                     text = gameUi.released,
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme.typography.bodyLarge.copy(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
             HorizontalDivider()
@@ -107,13 +110,15 @@ fun GameCardInformation(gameUi: GameUi){
             ) {
                 Text(
                     text = stringResource(R.string.genres),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Light
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.outline
                 )
                 Text(
                     text = gameUi.genres.joinToString(", "),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold
+                    style = MaterialTheme.typography.bodyLarge.copy(
+                        fontWeight = FontWeight.Bold
+                    ),
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
             HorizontalDivider()
@@ -134,9 +139,7 @@ fun GameCardInformation(gameUi: GameUi){
             ) {
                 Text(
                     text = if (showMore) stringResource(R.string.show_less) else stringResource(R.string.show_more),
-                    fontSize = 14.sp,
-                    fontWeight = FontWeight.Bold,
-                    style = MaterialTheme.typography.bodyMedium.copy(
+                    style = MaterialTheme.typography.labelLarge.copy(
                         textDecoration = TextDecoration.Underline
                     ),
                     color = if (isSystemInDarkTheme()) Color.White else Color.Black
@@ -146,7 +149,7 @@ fun GameCardInformation(gameUi: GameUi){
     }
 }
 
-@Preview
+@PreviewLightDark
 @Composable
 fun GameCardInformationPreview(){
     GamesLibTheme {
